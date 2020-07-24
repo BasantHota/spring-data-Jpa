@@ -11,3 +11,14 @@ provides support for creating JPA repositories by extending the Spring Data repo
 provides the infrastructure that is shared by the data store specific Spring Data projects
 3.JPA Provider-implements the Java Persistence API
 
+## code changes for latest spring boot version
+
+    @GetMapping
+    public Page<Employee> getEmployees() {
+        return repository.findAll(PageRequest.of(0, 3));
+    }
+
+    @GetMapping("sort/{field}")
+    public List<Employee> sortEmployeeByField(@PathVariable String field) {
+        return repository.findAll(Sort.by(field));
+    }
